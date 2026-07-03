@@ -1,0 +1,22 @@
+seed: 42
+output_dir: results
+rounds: 4
+local_epochs: 2
+learning_rate: 0.01
+client_fraction: 1.0
+synthetic_data:
+  n_patients: 720
+  n_sites: 6
+  time_steps: 12
+  test_fraction: 0.2
+  validation_fraction: 0.2
+privacy:
+  enabled: true
+  clip_norm: 1.0
+  noise_multiplier: 0.35
+secure_aggregation:
+  enabled: true
+robustness:
+  aggregation: fedavg
+  malicious_fraction: 0.0
+  attack: none
