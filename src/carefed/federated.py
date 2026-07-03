@@ -14,6 +14,7 @@ from .explain import feature_attribution_table, integrated_gradients
 from .model import RiskModel, apply_delta, clone_state, predict_scores, state_delta, train_local
 from .preprocessing import FeatureScaler, assert_patient_disjoint
 from .privacy import add_dp_noise, approximate_epsilon, clip_update
+from .reproducibility import environment_record, set_seed
 from .trust import classification_metrics, group_audit, group_gap_summary
 
 
@@ -33,7 +34,9 @@ def run_federated_experiment(frame: pd.DataFrame, config: dict) -> dict:
     The scaler is fitted on the training partition only. The alert threshold is
     selected on validation data and applied once to the held-out test partition.
     """
-    train, validation, test = split_by_patient(frame, seed=int(config.get("seed", 42)))
+    seed = int(config.get("seed", 42))
+    set_seed(seed)
+    train, validation, test = split_by_patient(frame, seed=seed)
     assert_patient_disjoint(train, validation, test)
     scaler = FeatureScaler.fit(train)
     train_sites = site_partitions(train)
@@ -81,7 +84,8 @@ def run_federated_experiment(frame: pd.DataFrame, config: dict) -> dict:
             "clip_norm": clip_norm if privacy_enabled else None,
             "noise_multiplier": noise_multiplier if privacy_enabled else None,
             "attack": attack,
-            "seed": config.get("seed", 42),
+            "seed": seed,
+            "environment": environment_record(),
         })
 
     validation_labels, validation_scores = predict_scores(global_model, validation, scaler)
