@@ -10,6 +10,7 @@ from .aggregation import append_audit_record, coordinate_median, fedavg, secure_
 from .attacks import label_flip_frame, scale_update, sign_flip_update
 from .data import GROUPS, patient_level_table, site_partitions, split_by_patient
 from .evaluation import curve_tables, expected_calibration_error, select_threshold_by_f1
+from .explain import feature_attribution_table, integrated_gradients
 from .model import RiskModel, apply_delta, clone_state, predict_scores, state_delta, train_local
 from .preprocessing import FeatureScaler, assert_patient_disjoint
 from .privacy import add_dp_noise, approximate_epsilon, clip_update
@@ -69,10 +70,7 @@ def run_federated_experiment(frame: pd.DataFrame, config: dict) -> dict:
             updates.append(delta)
             client_ids.append(site_id)
             client_sizes.append(float(site_frame["patient_id"].nunique()))
-        if aggregation == "fedavg":
-            merged = fedavg(updates, client_sizes)
-        else:
-            merged = choose_aggregator(aggregation, updates, client_ids)
+        merged = fedavg(updates, client_sizes) if aggregation == "fedavg" else choose_aggregator(aggregation, updates, client_ids)
         global_model.load_state_dict(apply_delta(base_state, merged))
         append_audit_record(audit_path, {
             "round": round_id,
@@ -99,6 +97,8 @@ def run_federated_experiment(frame: pd.DataFrame, config: dict) -> dict:
     audit = group_audit(table, test_labels, test_scores, GROUPS, threshold.threshold)
     gaps = group_gap_summary(audit)
     roc, pr, calibration = curve_tables(test_labels, test_scores)
+    test_x, _, _ = scaler.transform(test)
+    explanations = feature_attribution_table(integrated_gradients(global_model, test_x), scaler.feature_names)
     epsilon = approximate_epsilon(rounds, noise_multiplier) if privacy_enabled else float("inf")
     return {
         "model": global_model,
@@ -106,6 +106,7 @@ def run_federated_experiment(frame: pd.DataFrame, config: dict) -> dict:
         "metrics": metrics,
         "audit": audit,
         "gaps": gaps,
+        "explanations": explanations,
         "epsilon": epsilon,
         "threshold": threshold,
         "test_table": table,
