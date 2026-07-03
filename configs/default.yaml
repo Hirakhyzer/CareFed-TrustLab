@@ -1,0 +1,42 @@
+seed: 42
+output_dir: results/default_run
+
+synthetic_data:
+  n_sites: 4
+  episodes_per_site: 72
+  sequence_length: 20
+  frequency_minutes: 15
+  window_size: 12
+  prediction_horizon: 3
+  train_fraction: 0.60
+  validation_fraction: 0.20
+
+model:
+  hidden_dim: 32
+  dropout: 0.10
+
+federated:
+  rounds: 6
+  local_epochs: 2
+  batch_size: 32
+  learning_rate: 0.003
+  aggregation: fedavg
+  secure_aggregation: true
+  max_update_norm: 2.0
+
+privacy:
+  mode: none
+  delta: 0.00001
+  noise_multiplier: 1.0
+  max_grad_norm: 1.0
+
+attacks:
+  enabled: false
+  label_flip_clients: []
+  poisoned_update_clients: []
+  poisoned_update_scale: 4.0
+  dropout_clients: []
+
+evaluation:
+  threshold: 0.50
+  integrated_gradient_steps: 24
