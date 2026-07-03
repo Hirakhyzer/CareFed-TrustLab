@@ -40,6 +40,7 @@ def export_experiment_bundle(result: dict, output_dir: str | Path) -> None:
     pd.DataFrame([result["metrics"]]).to_csv(output_dir / "metrics.csv", index=False)
     result["audit"].to_csv(output_dir / "group_audit.csv", index=False)
     result["gaps"].to_csv(output_dir / "group_gap_summary.csv", index=False)
+    result["explanations"].to_csv(output_dir / "integrated_gradients.csv", index=False)
     result["roc"].to_csv(output_dir / "roc.csv", index=False)
     result["pr"].to_csv(output_dir / "precision_recall.csv", index=False)
     result["calibration"].to_csv(output_dir / "calibration.csv", index=False)
