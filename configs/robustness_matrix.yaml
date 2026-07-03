@@ -1,0 +1,11 @@
+study: robustness
+seed: 42
+n_patients: 720
+n_sites: 6
+rounds: 4
+local_epochs: 2
+privacy_enabled: true
+noise_multiplier: 0.35
+aggregators: [fedavg, secure_fedavg, median, trimmed_mean]
+attacks: [none, label_flip, sign_flip, scale_update]
+metrics: [f1, recall, roc_auc, ece, positive_rate_gap, recall_gap, f1_gap]
