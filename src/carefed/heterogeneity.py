@@ -16,10 +16,11 @@ def apply_site_shift(frame: pd.DataFrame, seed: int = 42, magnitude: float = 0.1
         shifted.loc[mask, "systolic_bp"] -= direction * magnitude * 12
         shifted.loc[mask, "care_contact_minutes"] *= 1 + direction * magnitude * 0.4
         if site == "home-care-node":
-            shifted.loc[mask, "medication_adherence"] = np.clip(
-                shifted.loc[mask, "adherence"] - magnitude * 0.12, 0, 1
+            shifted.loc[mask, "adherence"] = np.clip(
+                shifted.loc[mask, "adherence"] - magnitude * 0.12 + rng.normal(0, magnitude * 0.02, mask.sum()),
+                0,
+                1,
             )
-            shifted.loc[mask, "adherence"] = shifted.loc[mask, "medication_adherence"]
     return shifted
 
 
