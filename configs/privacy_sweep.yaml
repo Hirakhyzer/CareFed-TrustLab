@@ -1,0 +1,10 @@
+study: privacy_utility
+seed: 42
+n_patients: 720
+n_sites: 6
+rounds: 4
+local_epochs: 2
+aggregation: secure_fedavg
+privacy_enabled: true
+noise_multipliers: [0.0, 0.1, 0.25, 0.35, 0.5, 0.75]
+metrics: [f1, roc_auc, brier, ece, epsilon]
