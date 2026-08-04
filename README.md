@@ -1,12 +1,42 @@
-# CareFed-TrustLab
+<p align="center">
+  <img src="assets/banner.svg" alt="CareFed TrustLab banner" width="100%" />
+</p>
 
-> **Independent academic research prototype for privacy-preserving and trustworthy federated learning in connected healthcare.**
+<h1 align="center">CareFed-TrustLab</h1>
 
-[![Research reproducibility checks](https://github.com/Hirakhyzer/CareFed-TrustLab/actions/workflows/research-checks.yml/badge.svg)](../../actions/workflows/research-checks.yml)
+<p align="center">
+  <b>Privacy-preserving, trustworthy, and auditable federated learning for connected-health research.</b>
+</p>
 
-CareFed-TrustLab is a research infrastructure project for studying whether simulated hospitals and a home-care node can collaboratively train a clinical-deterioration model **without exchanging raw patient-level data** while measuring privacy, robustness, fairness, calibration, explainability, and auditability.
+<p align="center">
+  <img alt="Status" src="https://img.shields.io/badge/status-research--prototype-7C3AED?style=for-the-badge" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-federated--learning-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+  <img alt="Healthcare AI" src="https://img.shields.io/badge/Healthcare--AI-Trustworthy--Research-06B6D4?style=for-the-badge" />
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <a href="../../actions/workflows/research-checks.yml">
+    <img alt="Research reproducibility checks" src="https://github.com/Hirakhyzer/CareFed-TrustLab/actions/workflows/research-checks.yml/badge.svg" />
+  </a>
+</p>
+
+---
+
+## Overview
+
+**CareFed-TrustLab** is an independent academic research prototype for studying privacy-preserving and trustworthy federated learning in connected healthcare. It simulates hospitals and home-care providers that collaboratively train a clinical-deterioration model **without exchanging raw patient-level data**, while measuring privacy, robustness, fairness, calibration, explainability, and auditability.
+
+The repository is designed as a PhD-level experimental lab, not a clinical product. It focuses on rigorous workflow design: synthetic data, patient-level splits, training-only preprocessing, validation-only threshold selection, reproducible configuration, malicious-client stress tests, subgroup auditing, and a hash-chained audit ledger.
 
 > **Independence statement:** This is an independent personal research prototype. It is not an official University of Oldenburg, Connected Health Nordwest, OFFIS, DFKI, or University Medicine Oldenburg project.
+
+> **Clinical safety statement:** This repository is not a medical device, clinical decision system, secure-MPC product, privacy-compliance product, or deployment-ready hospital system.
+
+<p align="center">
+  <img src="assets/trust-dashboard.svg" alt="CareFed TrustLab dashboard preview" width="92%" />
+</p>
 
 ---
 
@@ -14,10 +44,10 @@ CareFed-TrustLab is a research infrastructure project for studying whether simul
 
 **Can federated learning across distributed healthcare providers retain useful predictive performance while exposing less information, resisting malicious participants, and producing evidence that is auditable and interpretable?**
 
-### Research questions
+### Study questions
 
 | ID | Question | Evidence generated |
-| --- | --- | --- |
+|---|---|---|
 | RQ1 | How does federated learning compare with centralized and local-only learning? | Baseline metrics and site-level results |
 | RQ2 | What privacy–utility trade-off appears as update noise changes? | F1, ROC-AUC, calibration, ECE, approximate epsilon |
 | RQ3 | Which aggregation method is more resilient to malicious client updates? | FedAvg, secure FedAvg, coordinate median, trimmed mean |
@@ -26,7 +56,11 @@ CareFed-TrustLab is a research infrastructure project for studying whether simul
 
 ---
 
-## Visual system overview
+## Visual system architecture
+
+<p align="center">
+  <img src="assets/federated-architecture.svg" alt="CareFed TrustLab federated learning architecture" width="94%" />
+</p>
 
 ```mermaid
 flowchart LR
@@ -35,7 +69,7 @@ flowchart LR
   H3[Hospital 03] --> L
   HC[Home-care node] --> L
   L --> DP[Clipping and DP-style noise]
-  DP --> SA[Pairwise-mask secure aggregation prototype]
+  DP --> SA[Secure aggregation teaching prototype]
   SA --> RA[Robust aggregation]
   RA --> GM[Global model]
   GM --> EV[Evaluation and calibration]
@@ -49,18 +83,20 @@ Detailed diagrams and output maps are available in [`docs/diagrams.md`](docs/dia
 
 ---
 
-## Why it is aligned with secure and trustworthy healthcare AI
+## Why this project matters
+
+Healthcare AI research often faces a tension between useful modeling and sensitive data protection. CareFed-TrustLab explores this tension through a controlled, reproducible laboratory where privacy-aware collaboration can be tested without using real patient data.
 
 | Research theme | CareFed-TrustLab implementation |
-| --- | --- |
-| Privacy-enhancing technologies | clipped updates, DP-style noise experiments, approximate privacy budget |
-| Applied cryptography | pairwise-mask secure aggregation teaching prototype with explicit assumptions |
-| Secure collaborative processing | multi-site federated PyTorch training |
-| Robustness | label-flip, sign-flip, and scaled-update attack simulations |
-| Trustworthy AI | calibration, expected calibration error, group audit, disparity gaps, explanations |
-| Explainability | Integrated Gradients feature attribution export |
-| Auditability | hash-chained ledger records every federated round |
-| Interdisciplinary work | student lab, workshop outputs, MATLAB figures, paper outline |
+|---|---|
+| Privacy-enhancing technologies | Clipped updates, DP-style noise experiments, approximate privacy budget |
+| Applied cryptography education | Pairwise-mask secure aggregation teaching prototype with explicit assumptions |
+| Secure collaborative processing | Multi-site federated PyTorch training |
+| Robustness | Label-flip, sign-flip, and scaled-update attack simulations |
+| Trustworthy AI | Calibration, expected calibration error, group audit, disparity gaps, explanations |
+| Explainability | Integrated Gradients feature-attribution export |
+| Auditability | Hash-chained ledger records every federated round |
+| Interdisciplinary research | Student lab, workshop material, MATLAB figures, paper outline |
 
 ---
 
@@ -69,14 +105,12 @@ Detailed diagrams and output maps are available in [`docs/diagrams.md`](docs/dia
 No real patient data are included. The generator creates simulated longitudinal observations across hospital and home-care settings.
 
 | Category | Variables |
-| --- | --- |
-| Site structure | hospital nodes and a home-care node |
-| Audit attributes | age band, sex, care setting, site |
-| Vital-sign-style features | heart rate, blood pressure, respiratory rate, oxygen saturation, temperature, glucose |
-| Contextual features | mobility score, adherence, care-contact minutes |
-| Research outcome | synthetic deterioration label |
-
-Read the complete data dictionary in [`data/README.md`](data/README.md).
+|---|---|
+| Site structure | Hospital nodes and a home-care node |
+| Audit attributes | Age band, sex, care setting, site |
+| Vital-sign-style features | Heart rate, blood pressure, respiratory rate, oxygen saturation, temperature, glucose |
+| Contextual features | Mobility score, adherence, care-contact minutes |
+| Research outcome | Synthetic deterioration label |
 
 Create a synthetic cohort:
 
@@ -89,27 +123,23 @@ save_synthetic_dataset(
 )
 ```
 
+Read the complete data dictionary in [`data/README.md`](data/README.md).
+
 ---
 
 ## Core research safeguards
 
-```mermaid
-flowchart TD
-  D[Generate synthetic data] --> S[Patient-level train validation test split]
-  S --> P[Fit scaler on training patients only]
-  P --> T[Train local site models]
-  T --> V[Choose alert threshold on validation only]
-  V --> E[Evaluate test set once]
-  E --> A[Audit groups calibration explanations]
-  A --> R[Export figures tables and ledger]
-```
+<p align="center">
+  <img src="assets/research-workflow.svg" alt="CareFed TrustLab research workflow" width="92%" />
+</p>
 
 - Synthetic data only; no clinical deployment claim.
 - Patient-level split prevents the same synthetic patient appearing in multiple partitions.
 - Feature scaler is fitted on the training partition only.
-- Alert threshold is selected on validation data and then fixed for testing.
-- Secure aggregation is explicitly scoped as a teaching prototype, **not** a full MPC implementation.
+- Alert threshold is selected on validation data and fixed before testing.
+- Secure aggregation is explicitly scoped as a teaching prototype, not a full MPC implementation.
 - The privacy budget is an approximation until a formal accountant such as Opacus is integrated.
+- All model, privacy, attack, aggregation, and split choices should be recorded before final test evaluation.
 
 ---
 
@@ -129,7 +159,7 @@ src/carefed/
   evaluation.py       ROC, PR, calibration, ECE, threshold selection, bootstrap intervals
   trust.py            group audit and disparity summaries
   explain.py          Integrated Gradients feature attribution
-  visuals.py          ROC, calibration, subgroup-gap, and privacy–utility figures
+  visuals.py          ROC, calibration, subgroup-gap, and privacy-utility figures
   experiments.py      privacy sweeps, robustness matrix, result-bundle export
   governance.py       data-use declaration and export boundary controls
   ledger.py           audit-ledger verification
@@ -151,19 +181,20 @@ conda activate carefed-trustlab
 ### Pip
 
 ```bash
+python -m pip install --upgrade pip
 python -m pip install numpy pandas scikit-learn scipy torch matplotlib PyYAML pytest jupyter
 ```
 
 From the repository root, use the source package directly:
 
-```bat
-set PYTHONPATH=src
-```
-
-macOS/Linux:
-
 ```bash
 export PYTHONPATH=src
+```
+
+Windows:
+
+```bat
+set PYTHONPATH=src
 ```
 
 ---
@@ -207,15 +238,15 @@ audit_ledger.jsonl
 ## Experiment portfolio
 
 | Study | Purpose | Main artifacts |
-| --- | --- | --- |
+|---|---|---|
 | Centralized vs federated | Quantify the cost of retaining data locally | F1, AUC, ECE, group audit |
-| Local-only baseline | Identify the benefit of collaboration | per-site metrics |
-| Privacy–utility sweep | Study different update-noise levels | epsilon vs F1 graph |
-| Robust aggregation matrix | Test resilience to malicious updates | aggregation × attack table |
-| Non-IID site shift | Stress multi-site distribution mismatch | site distribution report |
-| Group audit | Detect performance disparities | recall/F1/positive-rate gaps |
+| Local-only baseline | Identify the benefit of collaboration | Per-site metrics |
+| Privacy-utility sweep | Study different update-noise levels | Epsilon vs F1 graph |
+| Robust aggregation matrix | Test resilience to malicious updates | Aggregation × attack table |
+| Non-IID site shift | Stress multi-site distribution mismatch | Site distribution report |
+| Group audit | Detect performance disparities | Recall/F1/positive-rate gaps |
 | Explainability | Inspect dominant model features | Integrated Gradients CSV |
-| Audit verification | Validate ledger integrity | hash-chain verification result |
+| Audit verification | Validate ledger integrity | Hash-chain verification result |
 
 Study configurations are provided in [`configs/`](configs/). See [`docs/experiment_design.md`](docs/experiment_design.md) for the full matrix.
 
@@ -233,19 +264,21 @@ friedman_aggregation_test('results/repeated_aggregation_metrics.csv')
 ```
 
 | Script | Output |
-| --- | --- |
+|---|---|
 | `matlab/plot_trust_results.m` | Subgroup-gap chart from exported audit results |
-| `matlab/compare_privacy_utility.m` | Privacy–utility curve |
+| `matlab/compare_privacy_utility.m` | Privacy-utility curve |
 | `matlab/friedman_aggregation_test.m` | Repeated-seed aggregation comparison |
 
 ---
 
-## Jupyter and student supervision material
+## Jupyter and supervision material
 
 - [`notebooks/federated_trust_walkthrough.ipynb`](notebooks/federated_trust_walkthrough.ipynb): guided research walkthrough.
 - [`workshops/student_lab.md`](workshops/student_lab.md): 90-minute student lab, questions, and outputs.
 - [`paper/manuscript_outline.md`](paper/manuscript_outline.md): paper-ready research structure.
 - [`docs/threat_model.md`](docs/threat_model.md): asset, actor, and attack boundary.
+- [`docs/governance-and-ethics.md`](docs/governance-and-ethics.md): academic integrity, healthcare AI boundaries, and responsible-use guidance.
+- [`docs/reproducibility-playbook.md`](docs/reproducibility-playbook.md): experiment logging checklist and reporting standard.
 
 ---
 
@@ -261,12 +294,65 @@ python -c "from carefed.checks import run_smoke_checks; print(run_smoke_checks()
 
 ---
 
-## Security and limitation statement
+## Repository structure
 
-CareFed-TrustLab is not a medical device, clinical decision system, full secure-MPC implementation, or privacy-compliance product. It intentionally avoids overstated security claims. Its default synthetic results describe the configured generator, not real hospital performance. Real-world validation would require an approved protocol, legal basis, data-protection review, secure deployment environment, and external validation plan.
+```text
+CareFed-TrustLab/
+├── assets/                 visual README assets
+├── configs/                reproducible experiment settings
+├── data/                   synthetic data dictionary and optional generated data
+├── docs/                   diagrams, threat model, governance, experiment design
+├── matlab/                 MATLAB analysis scripts
+├── notebooks/              guided research walkthroughs
+├── paper/                  manuscript outline and paper material
+├── src/carefed/            core research package
+├── workshops/              student lab and teaching material
+└── .github/workflows/      reproducibility checks
+```
+
+---
+
+## Roadmap
+
+### Phase 1 — Research prototype
+
+- [x] Synthetic connected-health generator
+- [x] Federated training orchestration
+- [x] Centralized and local baselines
+- [x] Privacy and robust aggregation experiments
+- [x] Group audit and explainability exports
+- [x] Audit-ledger verification
+
+### Phase 2 — Research hardening
+
+- [ ] Add formal privacy accounting
+- [ ] Add stronger secure aggregation assumptions and tests
+- [ ] Expand non-IID stress tests
+- [ ] Add repeated-seed benchmark summary tables
+- [ ] Add external dataset adapter for licensed/public validation
+
+### Phase 3 — Publication readiness
+
+- [ ] Frozen experiment registry
+- [ ] Reproducibility capsule
+- [ ] Model card and data card
+- [ ] Ethics appendix
+- [ ] Manuscript-quality figures and tables
+
+---
+
+## Security, ethics, and limitations
+
+CareFed-TrustLab intentionally avoids overstated security or clinical claims. Its default synthetic results describe the configured generator, not real hospital performance. Real-world validation would require an approved protocol, legal basis, data-protection review, secure deployment environment, stakeholder review, clinical safety evaluation, and external validation plan.
 
 ---
 
 ## Citation-style statement
 
 > CareFed-TrustLab is an independent research prototype for auditable privacy-preserving federated learning in connected healthcare. It combines synthetic multi-site health telemetry, local PyTorch training, privacy-aware update handling, pairwise-mask aggregation simulation, robust aggregation, malicious-client experiments, calibration and subgroup auditing, Integrated Gradients explanations, MATLAB analysis, and a hash-chained experiment ledger.
+
+---
+
+<p align="center">
+  <b>CareFed-TrustLab — privacy-preserving healthcare AI research with trust, auditability, and reproducibility at the center.</b>
+</p>
