@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "CareFed-TrustLab: Privacy-Preserving and Trustworthy Federated Learning for Connected-Health Research"
+message: "If you use this research prototype, please cite it using this metadata."
+type: software
+authors:
+  - family-names: "Khyzer"
+    given-names: "Hira"
+repository-code: "https://github.com/Hirakhyzer/CareFed-TrustLab"
+abstract: "An independent academic research prototype for auditable privacy-preserving federated learning in connected healthcare using synthetic multi-site health telemetry, privacy-aware update handling, robust aggregation, malicious-client experiments, calibration, subgroup auditing, explainability, MATLAB analysis, and a hash-chained experiment ledger."
+keywords:
+  - federated learning
+  - trustworthy AI
+  - healthcare AI
+  - privacy-preserving machine learning
+  - secure aggregation
+  - fairness audit
+  - calibration
+  - explainability
+  - reproducible research
+license: MIT
