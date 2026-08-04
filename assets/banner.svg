@@ -1,0 +1,69 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">CareFed-TrustLab banner</title>
+  <desc id="desc">A polished healthcare federated learning banner with hospital nodes, secure aggregation, trust metrics, and audit ledger visuals.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#08111F" />
+      <stop offset="0.45" stop-color="#14213D" />
+      <stop offset="1" stop-color="#0E7490" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1050 110) rotate(125) scale(420 310)">
+      <stop stop-color="#22D3EE" stop-opacity="0.46" />
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0" />
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <rect width="1400" height="420" rx="34" fill="url(#bg)" />
+  <rect width="1400" height="420" rx="34" fill="url(#glow)" />
+
+  <g opacity="0.18">
+    <path d="M60 330 C180 230 260 385 390 260 S650 270 760 176 S965 78 1120 150 S1260 260 1355 170" stroke="#A7F3D0" stroke-width="3" />
+    <path d="M45 92 C170 180 280 48 408 126 S645 248 822 144 S1094 88 1350 220" stroke="#67E8F9" stroke-width="2" />
+    <circle cx="250" cy="130" r="4" fill="#67E8F9" />
+    <circle cx="520" cy="285" r="4" fill="#A7F3D0" />
+    <circle cx="875" cy="145" r="4" fill="#FDE68A" />
+    <circle cx="1190" cy="260" r="4" fill="#67E8F9" />
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="825" y="74" width="455" height="272" rx="28" fill="#F8FAFC" fill-opacity="0.96" />
+    <rect x="853" y="104" width="178" height="74" rx="18" fill="#ECFEFF" stroke="#22D3EE" />
+    <rect x="1060" y="104" width="178" height="74" rx="18" fill="#F0FDF4" stroke="#34D399" />
+    <rect x="853" y="206" width="178" height="74" rx="18" fill="#EEF2FF" stroke="#818CF8" />
+    <rect x="1060" y="206" width="178" height="74" rx="18" fill="#FFF7ED" stroke="#FB923C" />
+
+    <text x="881" y="138" fill="#0F172A" font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800">Hospital 01</text>
+    <text x="881" y="162" fill="#64748B" font-family="Inter,Segoe UI,Arial" font-size="13">Local training</text>
+    <text x="1088" y="138" fill="#0F172A" font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800">Hospital 02</text>
+    <text x="1088" y="162" fill="#64748B" font-family="Inter,Segoe UI,Arial" font-size="13">Private updates</text>
+    <text x="881" y="240" fill="#0F172A" font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800">Home Care</text>
+    <text x="881" y="264" fill="#64748B" font-family="Inter,Segoe UI,Arial" font-size="13">Edge site</text>
+    <text x="1088" y="240" fill="#0F172A" font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800">Trust Lab</text>
+    <text x="1088" y="264" fill="#64748B" font-family="Inter,Segoe UI,Arial" font-size="13">Audit + fairness</text>
+
+    <path d="M1030 141 L1060 141" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" />
+    <path d="M942 178 L942 206" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" />
+    <path d="M1031 243 L1060 243" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" />
+    <circle cx="1050" cy="192" r="28" fill="#0F172A" />
+    <path d="M1038 193 L1046 201 L1064 181" stroke="#67E8F9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <g>
+    <text x="92" y="124" fill="#CFFAFE" font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800" letter-spacing="4">FEDERATED HEALTHCARE AI</text>
+    <text x="88" y="186" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial" font-size="58" font-weight="900">CareFed-TrustLab</text>
+    <text x="92" y="228" fill="#D1FAE5" font-family="Inter,Segoe UI,Arial" font-size="25" font-weight="700">Privacy-preserving learning for connected-health research</text>
+    <text x="92" y="275" fill="#E2E8F0" font-family="Inter,Segoe UI,Arial" font-size="18">Synthetic data · secure aggregation prototype · fairness audit · calibration · explainability · ledger verification</text>
+
+    <g transform="translate(92 315)">
+      <rect width="150" height="42" rx="21" fill="#ECFEFF" fill-opacity="0.15" stroke="#67E8F9" />
+      <text x="24" y="27" fill="#ECFEFF" font-family="Inter,Segoe UI,Arial" font-size="14" font-weight="800">Trustworthy AI</text>
+      <rect x="168" width="172" height="42" rx="21" fill="#ECFEFF" fill-opacity="0.15" stroke="#A7F3D0" />
+      <text x="190" y="27" fill="#ECFEFF" font-family="Inter,Segoe UI,Arial" font-size="14" font-weight="800">Federated Learning</text>
+      <rect x="358" width="136" height="42" rx="21" fill="#ECFEFF" fill-opacity="0.15" stroke="#FDE68A" />
+      <text x="384" y="27" fill="#ECFEFF" font-family="Inter,Segoe UI,Arial" font-size="14" font-weight="800">Audit Ledger</text>
+    </g>
+  </g>
+</svg>
