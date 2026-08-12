@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="CareFed TrustLab banner" width="100%" />
+  <img src="assets/banner.png" alt="CareFed TrustLab banner" width="100%" />
 </p>
 
 <h1 align="center">CareFed-TrustLab</h1>
@@ -35,7 +35,7 @@ The repository is designed as a PhD-level experimental lab, not a clinical produ
 > **Clinical safety statement:** This repository is not a medical device, clinical decision system, secure-MPC product, privacy-compliance product, or deployment-ready hospital system.
 
 <p align="center">
-  <img src="assets/trust-dashboard.svg" alt="CareFed TrustLab dashboard preview" width="92%" />
+  <img src="assets/trust-dashboard.png" alt="CareFed TrustLab dashboard preview" width="92%" />
 </p>
 
 ---
@@ -59,7 +59,7 @@ The repository is designed as a PhD-level experimental lab, not a clinical produ
 ## Visual system architecture
 
 <p align="center">
-  <img src="assets/federated-architecture.svg" alt="CareFed TrustLab federated learning architecture" width="94%" />
+  <img src="assets/federated-architecture.png" alt="CareFed TrustLab federated learning architecture" width="94%" />
 </p>
 
 ```mermaid
@@ -130,7 +130,7 @@ Read the complete data dictionary in [`data/README.md`](data/README.md).
 ## Core research safeguards
 
 <p align="center">
-  <img src="assets/research-workflow.svg" alt="CareFed TrustLab research workflow" width="92%" />
+  <img src="assets/research-workflow.png" alt="CareFed TrustLab research workflow" width="92%" />
 </p>
 
 - Synthetic data only; no clinical deployment claim.
